@@ -1,17 +1,79 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<section class="flex flex-col items-center text-center px-6 py-24 max-w-2xl mx-auto">
+		<h1 class="text-4xl font-bold text-teal-700 mb-4">
+			Corporate credit risk, meet AI
+		</h1>
+		<p class="text-lg text-gray-600 max-w-xl mb-6">
+			I've spent over a decade assessing credit risk for corporates across Europe — 
+			from telecoms to oil & gas to metals & mining. These days, I'm also teaching 
+			myself AI, and this site is where I share both.
+		</p>
+		<div class="flex gap-4 mt-2">
+			<a href="/articles" class="px-5 py-2 rounded bg-teal-700 text-white font-medium">
+				Read Articles
+			</a>
+			<a href="/about" class="px-5 py-2 rounded border border-teal-700 text-teal-700 font-medium">
+				About
+			</a>
+		</div>
+	</section>
+	<section class="flex flex-wrap justify-center items-center gap-2 text-sm text-gray-500 border-t border-b py-6 px-6">
+	<span>Director, Scope Ratings</span>
+	<span>·</span>
+	<span>10+ years in corporate credit risk</span>
+	<span>·</span>
+	<span>Telecoms · Oil & Gas · Metals & Mining</span>
+	</section>
+	<section class="px-6 py-16 max-w-5xl mx-auto">
+	<div class="flex justify-between items-center mb-8">
+		<h2 class="text-2xl font-bold">Featured Articles</h2>
+		<a href="/articles" class="text-teal-700 text-sm font-medium">View all →</a>
+	</div>
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+		<div class="border rounded p-5">
+			<p class="text-xs text-gray-400 mb-2">Aug 2026 · Credit</p>
+			<h3 class="font-semibold mb-2">Placeholder Article Title One</h3>
+			<p class="text-sm text-gray-600">A short one or two line summary of what this article covers goes here.</p>
+		</div>
+		<div class="border rounded p-5">
+			<p class="text-xs text-gray-400 mb-2">Aug 2026 · AI</p>
+			<h3 class="font-semibold mb-2">Placeholder Article Title Two</h3>
+			<p class="text-sm text-gray-600">A short one or two line summary of what this article covers goes here.</p>
+		</div>
+		<div class="border rounded p-5">
+			<p class="text-xs text-gray-400 mb-2">Jul 2026 · Credit</p>
+			<h3 class="font-semibold mb-2">Placeholder Article Title Three</h3>
+			<p class="text-sm text-gray-600">A short one or two line summary of what this article covers goes here.</p>
+		</div>
+	</div>
+</section>
+<section class="px-6 py-16 max-w-5xl mx-auto">
+	<div class="flex justify-between items-center mb-8">
+		<h2 class="text-2xl font-bold">Featured AI Experiments</h2>
+		<a href="/experiments" class="text-teal-700 text-sm font-medium">View all →</a>
+	</div>
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+		<div class="border rounded p-5">
+			<p class="text-xs text-gray-400 mb-2">Aug 2026</p>
+			<h3 class="font-semibold mb-2">Building this website</h3>
+			<p class="text-sm text-gray-600">Documenting the process of building this site from scratch, using AI as a hands-on learning tool.</p>
+		</div>
+		<div class="border rounded p-5">
+			<p class="text-xs text-gray-400 mb-2">Aug 2026</p>
+			<h3 class="font-semibold mb-2">Credit Watchlist Experiment</h3>
+			<p class="text-sm text-gray-600">Applying AI tools to an early-warning credit watchlist concept.</p>
+		</div>
+	</div>
+</section>
+<footer class="border-t px-6 py-10 max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+	<p>© 2026 Rohit Nair. Built with Astro.</p>
+	<div class="flex gap-4">
+		<a href="mailto:rnair13.ai.one@gmail.com" class="hover:text-teal-700">Email</a>
+		<a href="https://www.linkedin.com/in/rohitnair13/" class="hover:text-teal-700">LinkedIn</a>
+	</div>
+</footer>
+</Layout>
