@@ -2,6 +2,7 @@ import React from 'react';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { MenuToggle } from '@/components/ui/menu-toggle';
+import { cn } from '@/lib/utils';
 
 const links = [
   { label: 'Home', href: '/' },
@@ -10,7 +11,11 @@ const links = [
   { label: 'Experiments', href: '/experiments' },
 ];
 
-export function SiteHeader() {
+interface SiteHeaderProps {
+  currentPath?: string;
+}
+
+export function SiteHeader({ currentPath = '/' }: SiteHeaderProps) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -22,7 +27,14 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-1 lg:flex">
           {links.map((link) => (
-            <a key={link.href} className={buttonVariants({ variant: 'ghost' })} href={link.href}>
+            <a
+              key={link.href}
+              className={cn(
+                buttonVariants({ variant: 'ghost' }),
+                link.href === currentPath && 'bg-accent text-accent-foreground',
+              )}
+              href={link.href}
+            >
               {link.label}
             </a>
           ))}
@@ -41,7 +53,10 @@ export function SiteHeader() {
               {links.map((link) => (
                 <a
                   key={link.href}
-                  className={buttonVariants({ variant: 'ghost', className: 'justify-start' })}
+                  className={cn(
+                    buttonVariants({ variant: 'ghost', className: 'justify-start' }),
+                    link.href === currentPath && 'bg-accent text-accent-foreground',
+                  )}
                   href={link.href}
                   onClick={() => setOpen(false)}
                 >
