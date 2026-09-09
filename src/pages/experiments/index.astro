@@ -10,14 +10,14 @@ const dateFormat = new Intl.DateTimeFormat('en-US', { month: 'short', year: 'num
 ---
 
 <Layout title="Experiments · Rohit Nair">
-	<section class="px-6 py-16 max-w-5xl mx-auto">
-		<h1 class="text-3xl font-bold mb-2">Experiments</h1>
+	<section class="reveal px-6 py-16 max-w-5xl mx-auto">
+		<h1 class="font-display text-3xl font-extrabold mb-2">Experiments</h1>
 		<p class="text-gray-600 mb-10">Hands-on AI experiments, mostly applied to credit risk problems.</p>
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 			{experiments.map((experiment) => (
-				<a href={`/experiments/${experiment.id}`} class="border rounded p-5 hover:border-teal-700">
+				<a href={`/experiments/${experiment.id}`} class="group rounded-2xl border p-5 transition-all hover:-translate-y-1 hover:border-violet-600 hover:shadow-lg">
 					<p class="text-xs text-gray-400 mb-2">{dateFormat.format(experiment.data.date)}</p>
-					<h2 class="font-semibold mb-2">{experiment.data.title}</h2>
+					<h2 class="font-display font-bold mb-2 group-hover:text-violet-700">{experiment.data.title}</h2>
 					<p class="text-sm text-gray-600">{experiment.data.description}</p>
 				</a>
 			))}
