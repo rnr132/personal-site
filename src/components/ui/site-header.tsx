@@ -21,7 +21,7 @@ export function SiteHeader({ currentPath = '/' }: SiteHeaderProps) {
   return (
     <header className="bg-background/95 supports-[backdrop-filter]:bg-background/80 sticky top-0 z-50 w-full border-b backdrop-blur-lg">
       <nav className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6">
-        <a href="/" className="font-semibold text-teal-700">
+        <a href="/" className="font-display text-lg font-extrabold tracking-tight text-teal-700">
           Rohit Nair
         </a>
 
