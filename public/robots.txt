@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /content-map
 
 Sitemap: https://rohit-nair.com/sitemap-index.xml

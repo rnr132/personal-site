@@ -6,11 +6,13 @@ import { Mail } from 'lucide-react';
 interface Props {
 	title?: string;
 	description?: string;
+	noindex?: boolean;
 }
 
 const {
 	title = 'Rohit Nair — Credit risk, meet AI',
 	description = 'Director at Scope Ratings writing on corporate credit risk across Europe, and teaching himself AI along the way.',
+	noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -27,6 +29,7 @@ const ogImageURL = new URL('/og-image.png', Astro.site);
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="canonical" href={canonicalURL} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 
 		<title>{title}</title>
 		<meta name="description" content={description} />
