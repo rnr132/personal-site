@@ -8,6 +8,12 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## Content map
+
+`docs/content-map.md` maps every piece of visible site text to its file and line number. It's also rendered live at `/content-map` (unlisted — noindexed, excluded from the sitemap, not linked in the nav), since that page imports `docs/content-map.md` directly as its content — the file is the single source of truth for both.
+
+Whenever a page, section, or new visible element is added, removed, or moved to a different file/line, update `docs/content-map.md` in the same change. Line numbers should stay accurate.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
