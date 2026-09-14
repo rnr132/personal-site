@@ -77,7 +77,7 @@ Frontmatter fields:
 
 Current entries:
 - `src/content/articles/europes-glassmakers-energy-risk.md` — a preview (first two paragraphs) plus a button linking out to the full piece on Scope Ratings, since it's published on the employer's research portal rather than written for this site.
-- `src/content/experiments/building-this-website.md` — placeholder, not yet written.
+- `src/content/experiments/building-this-website.md` — real write-up, done.
 - `src/content/experiments/credit-watchlist-experiment.md` — placeholder, not yet written.
 
 ## Images (not text — these need regenerating, not editing)
