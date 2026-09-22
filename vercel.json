@@ -1,24 +1,22 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "redirects": [
+  "routes": [
     {
-      "source": "/flightalert",
+      "src": "/flightalert/?",
       "has": [{ "type": "host", "value": "rohit-nair.com" }],
-      "destination": "https://flightalert.rohit-nair.com/",
-      "permanent": true
+      "status": 308,
+      "headers": { "Location": "https://flightalert.rohit-nair.com/" }
     },
     {
-      "source": "/flightalert",
+      "src": "/flightalert/?",
       "has": [{ "type": "host", "value": "www.rohit-nair.com" }],
-      "destination": "https://flightalert.rohit-nair.com/",
-      "permanent": true
-    }
-  ],
-  "rewrites": [
+      "status": 308,
+      "headers": { "Location": "https://flightalert.rohit-nair.com/" }
+    },
     {
-      "source": "/",
+      "src": "/",
       "has": [{ "type": "host", "value": "flightalert.rohit-nair.com" }],
-      "destination": "/flightalert/index.html"
+      "dest": "/flightalert/index.html"
     }
   ]
 }
