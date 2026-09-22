@@ -7,15 +7,21 @@ interface Props {
 	title?: string;
 	description?: string;
 	noindex?: boolean;
+	/** Absolute canonical URL, for pages served on another host (e.g. a subdomain). */
+	canonical?: string;
+	/** Origin prefixed to nav links, so they still reach the main site from a subdomain. */
+	linkBase?: string;
 }
 
 const {
 	title = 'Rohit Nair — Credit risk, meet AI',
 	description = 'Director at Scope Ratings writing on corporate credit risk across Europe, and teaching himself AI along the way.',
 	noindex = false,
+	canonical,
+	linkBase = '',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = canonical ? new URL(canonical) : new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL('/og-image.png', Astro.site);
 ---
 
@@ -48,7 +54,7 @@ const ogImageURL = new URL('/og-image.png', Astro.site);
 	</head>
 	<body>
 		<div class="grain-overlay"></div>
-		<SiteHeader client:load currentPath={Astro.url.pathname} />
+		<SiteHeader client:load currentPath={Astro.url.pathname} linkBase={linkBase} />
 		<slot />
 		<footer class="border-t px-6 py-10 max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
 			<p>© 2026 Rohit Nair. Built with Astro.</p>
