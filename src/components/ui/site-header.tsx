@@ -13,15 +13,16 @@ const links = [
 
 interface SiteHeaderProps {
   currentPath?: string;
+  linkBase?: string;
 }
 
-export function SiteHeader({ currentPath = '/' }: SiteHeaderProps) {
+export function SiteHeader({ currentPath = '/', linkBase = '' }: SiteHeaderProps) {
   const [open, setOpen] = React.useState(false);
 
   return (
     <header className="bg-background/95 supports-[backdrop-filter]:bg-background/80 sticky top-0 z-50 w-full border-b backdrop-blur-lg">
       <nav className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6">
-        <a href="/" className="font-display text-lg font-extrabold tracking-tight text-teal-700">
+        <a href={`${linkBase}/`} className="font-display text-lg font-extrabold tracking-tight text-teal-700">
           Rohit Nair
         </a>
 
@@ -33,7 +34,7 @@ export function SiteHeader({ currentPath = '/' }: SiteHeaderProps) {
                 buttonVariants({ variant: 'ghost' }),
                 link.href === currentPath && 'bg-accent text-accent-foreground',
               )}
-              href={link.href}
+              href={`${linkBase}${link.href}`}
             >
               {link.label}
             </a>
@@ -57,7 +58,7 @@ export function SiteHeader({ currentPath = '/' }: SiteHeaderProps) {
                     buttonVariants({ variant: 'ghost', className: 'justify-start' }),
                     link.href === currentPath && 'bg-accent text-accent-foreground',
                   )}
-                  href={link.href}
+                  href={`${linkBase}${link.href}`}
                   onClick={() => setOpen(false)}
                 >
                   {link.label}

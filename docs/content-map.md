@@ -6,12 +6,12 @@ Where every piece of visible text on rohit-nair.com lives, so you can edit it di
 
 | Element | File | Line(s) |
 |---|---|---|
-| Nav bar wordmark ("Rohit Nair") | `src/components/ui/site-header.tsx` | 25 |
+| Nav bar wordmark ("Rohit Nair") | `src/components/ui/site-header.tsx` | 26 |
 | Nav bar menu labels (Home / Articles / About / Experiments) | `src/components/ui/site-header.tsx` | 8–11 |
-| Footer copyright line | `src/layouts/Layout.astro` | 51 |
-| Footer email address (`mailto:` link) | `src/layouts/Layout.astro` | 53 |
-| Footer LinkedIn URL | `src/layouts/Layout.astro` | 58 |
-| Default page `<title>` + meta description (used by the homepage; other pages override it, see below) | `src/layouts/Layout.astro` | 12–13 |
+| Footer copyright line | `src/layouts/Layout.astro` | 60 |
+| Footer email address (`mailto:` link) | `src/layouts/Layout.astro` | 62 |
+| Footer LinkedIn URL | `src/layouts/Layout.astro` | 67 |
+| Default page `<title>` + meta description (used by the homepage; other pages override it, see below) | `src/layouts/Layout.astro` | 17–18 |
 
 ## Homepage — `src/pages/index.astro`
 
@@ -52,6 +52,24 @@ Note the email address and LinkedIn URL each appear **twice** on the site (foote
 |---|---|
 | Page title / meta description | 13–14 |
 | Heading + intro line | 17–18 |
+
+## London Flight Deals sign-up — `src/pages/flightalert.astro`
+
+Lives at **flightalert.rohit-nair.com** (not linked from the main site's nav). `vercel.json` rewrites that subdomain's `/` to this page, and redirects `rohit-nair.com/flightalert` to the subdomain. Sign-ups post to a Google Form; its URL and field IDs live in `src/data/flightalert-form.ts` (lines 5, 7, 8).
+
+| Element | Line(s) |
+|---|---|
+| Page title / meta description | 13–14 |
+| Eyebrow ("London Flight Deals") | 21 |
+| Hero headline ("Cheap flights," / "only when they're real.") | 23–24 |
+| Hero subtext paragraph | 27–28 |
+| Weekend Deals card (label, headline, description) | 36–38 |
+| Holiday Deals card (label, headline, description) | 41–43 |
+| Form heading ("Get the email") + intro line | 50, 52 |
+| Field labels ("Email" / "Name (optional)") | 61, 73 |
+| Button label ("Sign me up") | 87 |
+| Privacy / unsubscribe line | 92–93 |
+| Message after submitting (success / error) | 120, 123 |
 
 ## Articles & experiments themselves
 

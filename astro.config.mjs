@@ -18,7 +18,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !page.includes('/content-map'),
+      filter: (page) => !page.includes('/content-map') && !page.includes('/flightalert'),
     }),
   ]
 });

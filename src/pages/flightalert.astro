@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ElectricBackdrop } from '../components/ui/electric-backdrop';
+import { flightAlertForm } from '../data/flightalert-form';
+
+// Served at flightalert.rohit-nair.com via the host rewrite in vercel.json.
+if (!flightAlertForm.action || !flightAlertForm.emailEntry || !flightAlertForm.nameEntry) {
+	throw new Error('src/data/flightalert-form.ts is missing the Google Form URL or entry IDs.');
+}
+---
+
+<Layout
+	title="London Flight Deals · Rohit Nair"
+	description="A free, occasional email flagging genuinely cheap flights from UK airports: weekend trips and school-holiday trips."
+	canonical="https://flightalert.rohit-nair.com/"
+	linkBase="https://rohit-nair.com"
+>
+	<section class="relative overflow-hidden">
+		<ElectricBackdrop client:load />
+		<div class="relative flex flex-col items-center text-center px-6 py-20 md:py-28 max-w-3xl mx-auto">
+			<p class="text-xs font-semibold uppercase tracking-wide text-violet-500 mb-4">London Flight Deals</p>
+			<h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05] mb-6">
+				<span class="text-teal-700">Cheap flights,</span><br />
+				<span class="bg-gradient-to-r from-violet-600 to-teal-600 bg-clip-text text-transparent">only when they're real.</span>
+			</h1>
+			<p class="text-lg text-gray-600 max-w-xl">
+				A free email that flags unusually cheap flights from UK airports. It only goes out on
+				nights when something genuinely good turns up — no deal, no email.
+			</p>
+		</div>
+	</section>
+
+	<div class="reveal px-6 py-12 max-w-5xl mx-auto">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+			<div class="rounded-2xl border bg-gradient-to-br from-teal-50 to-white p-6">
+				<p class="text-xs font-semibold uppercase tracking-wide text-teal-700 mb-2">Weekend Deals</p>
+				<p class="font-display text-xl font-bold mb-2">A weekend away, without the price tag.</p>
+				<p class="text-sm text-gray-600">Friday–Sunday, Saturday–Monday, or Saturday–Sunday trips.</p>
+			</div>
+			<div class="rounded-2xl border bg-gradient-to-br from-violet-50 to-white p-6">
+				<p class="text-xs font-semibold uppercase tracking-wide text-violet-500 mb-2">Holiday Deals</p>
+				<p class="font-display text-xl font-bold mb-2">School holidays, for less.</p>
+				<p class="text-sm text-gray-600">Flights during, or within a couple of days of, a UK school holiday.</p>
+			</div>
+		</div>
+	</div>
+
+	<section class="reveal px-6 pt-4 pb-20 max-w-xl mx-auto">
+		<div class="rounded-2xl border p-6 md:p-8">
+			<h2 class="font-display text-2xl font-bold mb-2">Get the email</h2>
+			<p class="text-sm text-gray-600 mb-6">
+				It's free. I add new sign-ups by hand, so it may be a few days before your first one.
+			</p>
+			<form
+				id="flightalert-form"
+				action={flightAlertForm.action}
+				method="POST"
+				class="space-y-4"
+			>
+				<div>
+					<label for="fa-email" class="block text-sm font-medium mb-1.5">Email</label>
+					<input
+						id="fa-email"
+						name={flightAlertForm.emailEntry}
+						type="email"
+						required
+						autocomplete="email"
+						class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+					/>
+				</div>
+				<div>
+					<label for="fa-name" class="block text-sm font-medium mb-1.5">
+						Name <span class="text-gray-400 font-normal">(optional)</span>
+					</label>
+					<input
+						id="fa-name"
+						name={flightAlertForm.nameEntry}
+						type="text"
+						autocomplete="name"
+						class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+					/>
+				</div>
+				<button
+					type="submit"
+					class="w-full px-5 py-2.5 rounded-full bg-teal-700 text-white font-medium hover:bg-teal-800 transition-colors disabled:opacity-50"
+				>
+					Sign me up
+				</button>
+				<p id="fa-status" role="status" class="text-sm empty:hidden"></p>
+			</form>
+			<p class="mt-6 text-xs text-gray-500">
+				Your email is only used to send this digest and is never shared. To stop getting it,
+				just reply to any email and I'll take you off the list.
+			</p>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	// Without JS the form posts straight to Google and shows its confirmation page.
+	// With JS we post in the background and stay here. Google Forms doesn't send
+	// CORS headers, so the response is opaque: a resolved fetch is the best signal we get.
+	const form = document.getElementById('flightalert-form') as HTMLFormElement;
+	const status = document.getElementById('fa-status')!;
+	const button = form.querySelector('button')!;
+
+	form.addEventListener('submit', async (event) => {
+		event.preventDefault();
+		button.disabled = true;
+		status.className = 'text-sm text-gray-600';
+		status.textContent = 'Sending…';
+		try {
+			await fetch(form.action, {
+				method: 'POST',
+				mode: 'no-cors',
+				body: new URLSearchParams(new FormData(form) as unknown as Record<string, string>),
+			});
+			form.reset();
+			status.className = 'text-sm text-teal-700';
+			status.textContent = "Thanks — got it. I'll add you to the list shortly.";
+		} catch {
+			status.className = 'text-sm text-red-600';
+			status.textContent = 'Something went wrong. Please try again in a moment.';
+		} finally {
+			button.disabled = false;
+		}
+	});
+</script>
