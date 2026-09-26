@@ -95,7 +95,7 @@ Frontmatter fields:
 
 Current entries:
 - `src/content/articles/europes-glassmakers-energy-risk.md` — a preview (first two paragraphs) plus a button linking out to the full piece on Scope Ratings, since it's published on the employer's research portal rather than written for this site.
-- `src/content/articles/european-telecom-rating-methodology.md` — a short summary of Scope's European Telecommunication Services Rating Methodology (co-authored), plus a button linking out to the announcement on Scope Ratings.
+- `src/content/articles/european-telecom-rating-methodology.md` — a short first-person write-up of the European Telecommunication Services Rating Methodology I co-authored, plus a button linking out to the announcement on Scope Ratings.
 - `src/content/experiments/building-this-website.md` — placeholder, not yet written.
 - `src/content/experiments/credit-watchlist-experiment.md` — placeholder, not yet written.
 - `src/content/experiments/london-flight-deals.md` — write-up of the London Flight Deals project, ending with a button linking to the sign-up page at flightalert.rohit-nair.com (last line of the file).
