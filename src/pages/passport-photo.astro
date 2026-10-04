@@ -2,7 +2,96 @@
 import Layout from '../layouts/Layout.astro';
 
 // Paste the prompt between the backticks. Don't use backticks or ${ inside it.
-const prompt = ``.trim();
+const prompt = `## Passport Photo Preparation Prompt
+
+Edit the attached photograph for use on the Indian passport/passport-surrender portal.
+
+This is an identity-sensitive official photograph. Preserve the applicant’s real appearance and use deterministic photo editing wherever possible. Do not generate or reconstruct facial features.
+
+### Required output
+
+- JPEG format
+- Exactly **630 × 810 pixels**
+- Strictly under **250,000 bytes**
+- Standard sRGB colour
+- Clean, uniform, pure-white background: **#FFFFFF**
+
+### Framing and composition
+
+- Create a close-up showing the full head and only the top of the shoulders.
+- The distance from the **top of the hair to the bottom of the chin must occupy 80–85% of the photograph**. Aim for approximately **82.5%**, or about **668 pixels** of the 810-pixel height.
+- Centre the head horizontally.
+- Keep the complete hairline, crown, chin and both ears visible.
+- Do not crop the hair or chin.
+- The applicant must face forward and look directly at the camera.
+- Eyes must be open and clearly visible.
+- Hair must not cover the eyes.
+- Preserve the applicant’s natural expression.
+
+### Identity preservation
+
+- Preserve the original face, facial geometry, skin texture, hairline, expression and identity.
+- Do not slim, reshape, beautify, smooth or regenerate the face.
+- Do not change the apparent age, gaze, eye shape, nose, mouth, jaw or skin tone.
+- Do not replace or invent eye or iris details.
+- Do not make the pupils artificially black or unnaturally uniform.
+- Retain natural iris boundaries and eye texture.
+
+### Eyes and reflections
+
+- Inspect both eyes closely for red-eye, reddish pupil glare, flash reflections, ring-light spots and large catchlights.
+- Correct genuine red-eye locally without changing the eye shape or iris colour.
+- Remove only reflections that obscure the pupils or could be interpreted as flash artefacts.
+- Preserve natural iris texture and visibility.
+- Ensure there are no conspicuous bright or red spots inside either pupil.
+
+### Lighting and colour
+
+- Keep skin tones natural.
+- Correct excessive darkness or uneven illumination gently.
+- If one side of the face is noticeably darker, balance it with a gradual spatial exposure correction rather than flattening the whole face.
+- Preserve pores, facial detail and natural contrast.
+- Avoid clipped highlights, washed-out skin, harsh shadows and artificial-looking brightness.
+- Remove distracting shadows from the background.
+- Ensure there are no flash reflections or strong facial shadows.
+
+### Background and edges
+
+- Replace the background with pure white **#FFFFFF**.
+- Keep hair and shoulder edges clean and natural.
+- Avoid grey halos, jagged cutout edges or white contamination inside the hair.
+- Anti-aliased edge pixels are acceptable, but all unobstructed background areas must be exactly white.
+
+### Source-photo suitability check
+
+Before editing, determine whether the source is suitable.
+
+If achieving the required 80–85% head size would require substantial upscaling, or if the eyes are blurred, the applicant is looking away, the head pose is unsuitable, or facial detail is insufficient, do not fabricate missing detail. Explain the problem and request a new, full-resolution, unedited camera photograph.
+
+A new photo should be taken:
+
+- At eye level
+- Approximately 1.5 metres from the camera
+- Looking directly into the lens
+- With the flash and ring light switched off
+- In soft, even natural light
+- Away from the wall to prevent background shadows
+- Using the original full-resolution camera file—not a screenshot or messaging-app copy
+
+### Verification before delivery
+
+Do not provide the final file until all checks pass. Report:
+
+- Actual format
+- Exact pixel dimensions
+- Exact file size in bytes
+- Hair-to-chin percentage
+- Confirmation that unobstructed background pixels are **RGB 255,255,255**
+- Confirmation that both eyes contain no red-eye or obscuring light reflections
+- Confirmation that facial illumination is reasonably even
+- Confirmation that no generative facial alterations were made
+
+Finally, provide a downloadable JPEG and show a preview of the finished photograph.`.trim();
 ---
 
 <Layout
