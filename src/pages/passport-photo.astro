@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Paste the prompt between the backticks. Don't use backticks or ${ inside it.
+const prompt = `## Passport Photo Preparation Prompt
+
+Edit the attached photograph for use on the Indian passport/passport-surrender portal.
+
+This is an identity-sensitive official photograph. Preserve the applicant’s real appearance and use deterministic photo editing wherever possible. Do not generate or reconstruct facial features.
+
+### Required output
+
+- JPEG format
+- Exactly **630 × 810 pixels**
+- Strictly under **250,000 bytes**
+- Standard sRGB colour
+- Clean, uniform, pure-white background: **#FFFFFF**
+
+### Framing and composition
+
+- Create a close-up showing the full head and only the top of the shoulders.
+- The distance from the **top of the hair to the bottom of the chin must occupy 80–85% of the photograph**. Aim for approximately **82.5%**, or about **668 pixels** of the 810-pixel height.
+- Centre the head horizontally.
+- Keep the complete hairline, crown, chin and both ears visible.
+- Do not crop the hair or chin.
+- The applicant must face forward and look directly at the camera.
+- Eyes must be open and clearly visible.
+- Hair must not cover the eyes.
+- Preserve the applicant’s natural expression.
+
+### Identity preservation
+
+- Preserve the original face, facial geometry, skin texture, hairline, expression and identity.
+- Do not slim, reshape, beautify, smooth or regenerate the face.
+- Do not change the apparent age, gaze, eye shape, nose, mouth, jaw or skin tone.
+- Do not replace or invent eye or iris details.
+- Do not make the pupils artificially black or unnaturally uniform.
+- Retain natural iris boundaries and eye texture.
+
+### Eyes and reflections
+
+- Inspect both eyes closely for red-eye, reddish pupil glare, flash reflections, ring-light spots and large catchlights.
+- Correct genuine red-eye locally without changing the eye shape or iris colour.
+- Remove only reflections that obscure the pupils or could be interpreted as flash artefacts.
+- Preserve natural iris texture and visibility.
+- Ensure there are no conspicuous bright or red spots inside either pupil.
+
+### Lighting and colour
+
+- Keep skin tones natural.
+- Correct excessive darkness or uneven illumination gently.
+- If one side of the face is noticeably darker, balance it with a gradual spatial exposure correction rather than flattening the whole face.
+- Preserve pores, facial detail and natural contrast.
+- Avoid clipped highlights, washed-out skin, harsh shadows and artificial-looking brightness.
+- Remove distracting shadows from the background.
+- Ensure there are no flash reflections or strong facial shadows.
+
+### Background and edges
+
+- Replace the background with pure white **#FFFFFF**.
+- Keep hair and shoulder edges clean and natural.
+- Avoid grey halos, jagged cutout edges or white contamination inside the hair.
+- Anti-aliased edge pixels are acceptable, but all unobstructed background areas must be exactly white.
+
+### Source-photo suitability check
+
+Before editing, determine whether the source is suitable.
+
+If achieving the required 80–85% head size would require substantial upscaling, or if the eyes are blurred, the applicant is looking away, the head pose is unsuitable, or facial detail is insufficient, do not fabricate missing detail. Explain the problem and request a new, full-resolution, unedited camera photograph.
+
+A new photo should be taken:
+
+- At eye level
+- Approximately 1.5 metres from the camera
+- Looking directly into the lens
+- With the flash and ring light switched off
+- In soft, even natural light
+- Away from the wall to prevent background shadows
+- Using the original full-resolution camera file—not a screenshot or messaging-app copy
+
+### Verification before delivery
+
+Do not provide the final file until all checks pass. Report:
+
+- Actual format
+- Exact pixel dimensions
+- Exact file size in bytes
+- Hair-to-chin percentage
+- Confirmation that unobstructed background pixels are **RGB 255,255,255**
+- Confirmation that both eyes contain no red-eye or obscuring light reflections
+- Confirmation that facial illumination is reasonably even
+- Confirmation that no generative facial alterations were made
+
+Finally, provide a downloadable JPEG and show a preview of the finished photograph.`.trim();
+---
+
+<Layout
+	title="Indian passport surrender photo prompt · Rohit Nair"
+	description="A prompt that gets a photo through the Indian passport surrender portal's very particular photo requirements, and the story of how I got there."
+>
+	<section class="reveal px-6 py-16 md:py-20 max-w-2xl mx-auto">
+		<p class="text-xs font-semibold uppercase tracking-wide text-violet-500 mb-3">AI experiment</p>
+		<h1 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-6">
+			A photo the Indian passport surrender portal will actually accept
+		</h1>
+
+		<div class="space-y-4 text-gray-700 leading-relaxed">
+			<p>
+				Surrendering an Indian passport sounds like paperwork, and it mostly is. The part that
+				nearly beat me was the photo. The website's requirements are very particular, and
+				they're checked by a system that rejects an upload without telling you much about why.
+			</p>
+			<p>
+				I went round in circles for far longer than I'd like to admit. I'd fix one thing, the
+				portal would object to another, and fixing that would undo the first. Ordinary photo
+				editing apps weren't built around this exact set of rules, so every attempt turned into
+				trial and error.
+			</p>
+			<p>
+				In the end I stopped fighting the tools and wrote a detailed prompt describing exactly
+				what the portal wants. It worked. If you're stuck in the same loop, it might save you
+				the afternoon it cost me.
+			</p>
+		</div>
+
+		<div class="mt-10 rounded-2xl border p-5 md:p-6">
+			<div class="flex items-center justify-between gap-4 mb-3">
+				<h2 class="font-display text-lg font-bold">The prompt</h2>
+				<button
+					id="pp-copy"
+					type="button"
+					disabled={!prompt}
+					class="px-4 py-1.5 rounded-full bg-teal-700 text-white text-sm font-medium hover:bg-teal-800 transition-colors disabled:opacity-40 disabled:hover:bg-teal-700"
+				>
+					Copy
+				</button>
+			</div>
+			<pre
+				id="pp-prompt"
+				class="min-h-48 max-h-[32rem] overflow-auto whitespace-pre-wrap break-words rounded-md border border-input bg-gray-50 px-3 py-3 text-sm text-gray-800 font-mono"
+			>{prompt}</pre>
+			<p class="mt-3 text-xs text-gray-500">
+				Use it with an AI assistant that can edit images, and attach your photo along with it.
+			</p>
+		</div>
+
+		<div class="mt-8 space-y-4 text-gray-700 leading-relaxed">
+			<p class="text-sm text-gray-500">
+				Requirements change, and every photo is different, so check the result against the
+				portal's current instructions before you upload it. If this helped, or if something
+				needed tweaking for your case, I'd like to hear about it.
+			</p>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	const button = document.getElementById('pp-copy') as HTMLButtonElement;
+	const box = document.getElementById('pp-prompt')!;
+
+	button.addEventListener('click', async () => {
+		try {
+			await navigator.clipboard.writeText(box.textContent ?? '');
+			button.textContent = 'Copied';
+		} catch {
+			button.textContent = 'Press Ctrl/Cmd+C';
+			window.getSelection()?.selectAllChildren(box);
+		}
+		setTimeout(() => (button.textContent = 'Copy'), 2000);
+	});
+</script>
