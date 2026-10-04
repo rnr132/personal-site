@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Paste the prompt between the backticks. Don't use backticks or ${ inside it.
+const prompt = ``.trim();
+---
+
+<Layout
+	title="Indian passport surrender photo prompt · Rohit Nair"
+	description="A prompt that gets a photo through the Indian passport surrender portal's very particular photo requirements, and the story of how I got there."
+>
+	<section class="reveal px-6 py-16 md:py-20 max-w-2xl mx-auto">
+		<p class="text-xs font-semibold uppercase tracking-wide text-violet-500 mb-3">AI experiment</p>
+		<h1 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-6">
+			A photo the Indian passport surrender portal will actually accept
+		</h1>
+
+		<div class="space-y-4 text-gray-700 leading-relaxed">
+			<p>
+				Surrendering an Indian passport sounds like paperwork, and it mostly is. The part that
+				nearly beat me was the photo. The website's requirements are very particular, and
+				they're checked by a system that rejects an upload without telling you much about why.
+			</p>
+			<p>
+				I went round in circles for far longer than I'd like to admit. I'd fix one thing, the
+				portal would object to another, and fixing that would undo the first. Ordinary photo
+				editing apps weren't built around this exact set of rules, so every attempt turned into
+				trial and error.
+			</p>
+			<p>
+				In the end I stopped fighting the tools and wrote a detailed prompt describing exactly
+				what the portal wants. It worked. If you're stuck in the same loop, it might save you
+				the afternoon it cost me.
+			</p>
+		</div>
+
+		<div class="mt-10 rounded-2xl border p-5 md:p-6">
+			<div class="flex items-center justify-between gap-4 mb-3">
+				<h2 class="font-display text-lg font-bold">The prompt</h2>
+				<button
+					id="pp-copy"
+					type="button"
+					disabled={!prompt}
+					class="px-4 py-1.5 rounded-full bg-teal-700 text-white text-sm font-medium hover:bg-teal-800 transition-colors disabled:opacity-40 disabled:hover:bg-teal-700"
+				>
+					Copy
+				</button>
+			</div>
+			<pre
+				id="pp-prompt"
+				class="min-h-48 max-h-[32rem] overflow-auto whitespace-pre-wrap break-words rounded-md border border-input bg-gray-50 px-3 py-3 text-sm text-gray-800 font-mono"
+			>{prompt}</pre>
+			<p class="mt-3 text-xs text-gray-500">
+				Use it with an AI assistant that can edit images, and attach your photo along with it.
+			</p>
+		</div>
+
+		<div class="mt-8 space-y-4 text-gray-700 leading-relaxed">
+			<p class="text-sm text-gray-500">
+				Requirements change, and every photo is different, so check the result against the
+				portal's current instructions before you upload it. If this helped, or if something
+				needed tweaking for your case, I'd like to hear about it.
+			</p>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	const button = document.getElementById('pp-copy') as HTMLButtonElement;
+	const box = document.getElementById('pp-prompt')!;
+
+	button.addEventListener('click', async () => {
+		try {
+			await navigator.clipboard.writeText(box.textContent ?? '');
+			button.textContent = 'Copied';
+		} catch {
+			button.textContent = 'Press Ctrl/Cmd+C';
+			window.getSelection()?.selectAllChildren(box);
+		}
+		setTimeout(() => (button.textContent = 'Copy'), 2000);
+	});
+</script>

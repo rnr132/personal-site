@@ -71,6 +71,20 @@ Lives at **flightalert.rohit-nair.com** (not linked from the main site's nav). `
 | Privacy / unsubscribe line | 92–93 |
 | Message after submitting (success / error) | 120, 123 |
 
+## Passport photo prompt — `src/pages/passport-photo.astro`
+
+Lives at **/passport-photo** (not linked from the nav; indexed, so it can be shared and found). The prompt itself is the empty `const prompt` on line 5 — paste it between the backticks (no backticks or `${` inside it). The box and Copy button show whatever is there; the button stays disabled while it's empty.
+
+| Element | Line(s) |
+|---|---|
+| Page title / meta description | 9–10 |
+| Eyebrow ("AI experiment") + headline | 13, 15 |
+| Note on the struggle (3 paragraphs) | 19–34 |
+| "The prompt" heading / Copy button label | 39, 46 |
+| Prompt text (empty until pasted) | 5 |
+| Usage hint under the box | 54 |
+| Closing disclaimer | 59–62 |
+
 ## Articles & experiments themselves
 
 Each article and experiment is its own Markdown file — this is also how you add a new one.
