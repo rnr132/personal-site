@@ -50,8 +50,20 @@ Note the email address and LinkedIn URL each appear **twice** on the site (foote
 
 | Element | Line(s) |
 |---|---|
-| Page title / meta description | 13–14 |
-| Heading + intro line | 17–18 |
+| Page title / meta description | 15–16 |
+| "Working Volumes" bookshelf at the top of the page (mounted component and its typography/colour props) | 18–30 |
+| Heading + intro line (above the experiment cards) | 32–33 |
+
+The bookshelf is an embedded page (an iframe) whose text lives in `public/landing-pages/complete-shelf-v2.html`, not in the Astro page. The component wrapper is `src/shaders/landing-pages/CompleteShelfLandingPage.tsx`; its fonts, weights, sizes and accent colour come from the props on lines 21–28 of `index.astro`.
+
+| Element (inside `public/landing-pages/complete-shelf-v2.html`) | Line(s) |
+|---|---|
+| Browser tab title / meta description of the embedded page | 12, 10 |
+| "Working Volumes" wordmark + "Seven field guides for making" | 1613–1614 |
+| "Edition 02 · 2026" + palette label | 1617–1618 |
+| "Open" button, "Open book" / "Reset view" buttons | 1640, 1702–1703 |
+| The seven volumes (Codex, Claude Code, Cursor, Antigravity, Figma, Framer, Xcode): title, tagline, description, binding, format, theme, motif | 1750 onward (one block per volume, ~33 lines each) |
+| Static fallback catalog shown if WebGL is unavailable | 1711–1723 |
 
 ## London Flight Deals sign-up — `src/pages/flightalert.astro`
 
